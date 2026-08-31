@@ -3,14 +3,11 @@ import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
-import netlify from "@astrojs/netlify";
-import vercel from "@astrojs/vercel";
 
 // The Desert Fish home menu is rendered locally and does not require CMS credentials.
 export default defineConfig({
   site: "https://desertfish.local/",
-  adapter: process.env.NETLIFY ? netlify() : vercel(),
-  output: "server",
+  output: "static",
   integrations: [
     tailwind({ applyBaseStyles: false }),
     vue({ appEntrypoint: "/src/pages/_app" }),
