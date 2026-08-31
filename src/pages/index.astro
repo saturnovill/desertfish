@@ -87,7 +87,7 @@ const hours = [
       <div class="wave" aria-hidden="true"></div>
     </header>
     <main>
-      <section class="intro container" id="menu"><div><p class="eyebrow" data-i18n="menuLabel">Nuestro menú</p><h2 data-i18n-html="introTitle">Hecho para<br />disfrutarse.</h2></div><p data-i18n="introCopy">Del ceviche a los camarones al ajo: encuentra ese antojo que te trae de vuelta.</p></section>
+      <section class="intro container" id="menu" tabindex="-1"><div><p class="eyebrow" data-i18n="menuLabel">Nuestro menú</p><h2 data-i18n-html="introTitle">Hecho para<br />disfrutarse.</h2></div><p data-i18n="introCopy">Del ceviche a los camarones al ajo: encuentra ese antojo que te trae de vuelta.</p></section>
       <div class="categories container">
         {categories.map((category, index) => (
           <section class="category" aria-labelledby={`category-${index}`}>
@@ -175,6 +175,9 @@ const hours = [
           button.classList.toggle("is-active", isSelected);
           button.setAttribute("aria-pressed", String(isSelected));
         });
+        const menu = document.querySelector<HTMLElement>("#menu");
+        menu?.scrollIntoView({ behavior: "smooth", block: "start" });
+        menu?.focus({ preventScroll: true });
       };
       document.querySelectorAll<HTMLElement>("[data-language]").forEach((button) => {
         button.addEventListener("click", () => {
