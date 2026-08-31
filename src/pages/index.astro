@@ -1,0 +1,202 @@
+---
+const categories = [
+  { name: "Para compartir", enName: "To share", note: "Sabor del mar, hecho al momento.", enNote: "Seafood flavor, made to order.", items: [
+    { name: "Ceviche de cochito", enName: "Cochito ceviche", detail: "½ L con tomate, cebolla, pepino, cilantro, limón y coctel de tomate.", enDetail: "½ L with tomato, onion, cucumber, cilantro, lime, and tomato cocktail sauce.", price: "$110" },
+    { name: "Ceviche de camarón", enName: "Shrimp ceviche", detail: "½ L con tomate, cebolla, pepino, cilantro, limón y coctel de tomate.", enDetail: "½ L with tomato, onion, cucumber, cilantro, lime, and tomato cocktail sauce.", price: "$125" },
+    { name: "Orden de camarones pop corn", enName: "Popcorn shrimp order", detail: "250 g de pequeños camarones con cáscara, empanizados con harina sazonada y fritos.", enDetail: "250 g of small shell-on shrimp, breaded in seasoned flour and fried.", price: "$130" },
+  ] },
+  { name: "Favoritos de la casa", enName: "House favorites", note: "Con arroz blanco, papas fritas y aderezo de la casa.", enNote: "Served with white rice, fries, and house dressing.", items: [
+    { name: "Promo", enName: "Special", detail: "Camarones empanizados + pescado empanizado, con todas sus guarniciones.", enDetail: "Breaded shrimp + breaded fish, with all sides included.", price: "$280", before: "$330" },
+    { name: "Pescado al ajo", enName: "Garlic fish", detail: "250 g de pescado al ajo.", enDetail: "250 g of garlic fish.", price: "$200" },
+    { name: "Camarones al ajo", enName: "Garlic shrimp", detail: "200 g de camarones al ajo.", enDetail: "200 g of garlic shrimp.", price: "$200" },
+    { name: "Pescado crunch", enName: "Crunch fish", detail: "250 g de pescado empanizado estilo Kentucky.", enDetail: "250 g of Kentucky-style breaded fish.", price: "$165" },
+    { name: "Camarones crunch", enName: "Crunch shrimp", detail: "200 g de camarones empanizados estilo Kentucky.", enDetail: "200 g of Kentucky-style breaded shrimp.", price: "$165" },
+    { name: "Pescado empanizado", enName: "Breaded fish", detail: "250 g de pescado empanizado.", enDetail: "250 g of breaded fish.", price: "$165" },
+    { name: "Camarones empanizados", enName: "Breaded shrimp", detail: "200 g de camarones empanizados.", enDetail: "200 g of breaded shrimp.", price: "$165" },
+  ] },
+  { name: "Fresco y ligero", enName: "Fresh and light", note: "Una opción fresca para acompañar tu día.", enNote: "A fresh option for your day.", items: [
+    { name: "Ensalada de jaiba", enName: "Crab salad", detail: "Bowl con brócoli, coliflor, zanahoria, cebolla, chile serrano y un toque de mayonesa.", enDetail: "A bowl with broccoli, cauliflower, carrot, onion, serrano pepper, and a touch of mayonnaise.", price: "$150" },
+    { name: "Ensalada de camarón", enName: "Shrimp salad", detail: "Bowl con brócoli, coliflor, zanahoria, cebolla, chile serrano y un toque de mayonesa.", enDetail: "A bowl with broccoli, cauliflower, carrot, onion, serrano pepper, and a touch of mayonnaise.", price: "$150" },
+    { name: "Hamburguesa de camarón", enName: "Shrimp burger", detail: "120 g de camarón molido en pan brioche, lechuga, tomate, cebolla, salsa tártara y papas fritas.", enDetail: "120 g of ground shrimp on a brioche bun with lettuce, tomato, onion, tartar sauce, and fries.", price: "$175" },
+  ] },
+  { name: "Extras", enName: "Extras", note: "El complemento perfecto.", enNote: "The perfect side.", items: [
+    { name: "Arroz blanco", enName: "White rice", detail: "Extra", enDetail: "Extra", price: "$45" },
+    { name: "Papas fritas", enName: "French fries", detail: "Extra", enDetail: "Extra", price: "$50" },
+    { name: "Aderezo de la casa", enName: "House dressing", detail: "Extra", enDetail: "Extra", price: "$15" },
+  ] },
+];
+const freshCategories = [
+  { name: "Camarón", enName: "Shrimp", items: [
+    ["Camarón chico", "Small shrimp"], ["Camarón mediano", "Medium shrimp"],
+    ["Camarón grande", "Large shrimp"], ["Camarón con cabeza", "Head-on shrimp"],
+  ] },
+  { name: "Pescados", enName: "Fish", items: [
+    ["Cochito filete", "Cochito fillet"], ["Cochito picado", "Chopped cochito"],
+    ["Cazón filete", "Dogfish fillet"], ["Tilapia filete", "Tilapia fillet"],
+    ["Sierra molida", "Ground mackerel"], ["Medallón de atún", "Tuna medallion"],
+    ["Salmón", "Salmon"], ["Atún ahumado", "Smoked tuna"],
+    ["Extranjero entero", "Whole extranjero"], ["Botete limpio", "Cleaned pufferfish"],
+    ["Corvina entera", "Whole corvina"], ["Sierra entera", "Whole mackerel"],
+    ["Baya filete", "Baya fillet"], ["Filete de lenguado", "Sole fillet"],
+    ["Aleta de atún", "Tuna fin"], ["Palometa entera", "Whole pompano"],
+  ] },
+  { name: "Marisco", enName: "Seafood", items: [
+    ["Pulpo", "Octopus"], ["Caracol", "Sea snail"], ["Manta", "Manta ray"],
+    ["Calamar", "Squid"], ["Langosta", "Lobster"], ["Abulón", "Abalone"],
+    ["Callo", "Scallop"], ["Surimi", "Surimi"], ["Jaiba entera limpia", "Clean whole crab"],
+  ] },
+  { name: "Listos para terminar", enName: "Ready to finish", items: [
+    ["Pulpo cocido", "Cooked octopus"], ["Campechana", "Campechana seafood cocktail"],
+    ["Carne de jaiba cocida", "Cooked crab meat"], ["Camarón empanizado", "Breaded shrimp"],
+    ["Pescado empanizado", "Breaded fish"], ["Camarón pelado", "Peeled shrimp"],
+  ] },
+];
+const hours = [
+  ["Lunes", "Monday", "8 a.m. – 6 p.m."], ["Martes", "Tuesday", "8 a.m. – 6 p.m."],
+  ["Miércoles", "Wednesday", "8 a.m. – 6 p.m."], ["Jueves", "Thursday", "8 a.m. – 6 p.m."],
+  ["Viernes", "Friday", "8 a.m. – 6 p.m."], ["Sábado", "Saturday", "8 a.m. – 6 p.m."],
+  ["Domingo", "Sunday", "8 a.m. – 4 p.m."],
+];
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Menú de Desert Fish: mariscos y pescados preparados al momento." />
+    <title>Desert Fish | Menú</title>
+  </head>
+  <body>
+    <header class="hero" id="inicio">
+      <nav class="nav container" aria-label="Navegación principal">
+        <a class="brand" href="#inicio" aria-label="Desert Fish, inicio"><img src="/desert-logo.png" alt="Desert Fish" /></a>
+        <div class="nav-links">
+          <a class="menu-link" href="#menu" data-i18n="navMenu">Ver menú</a>
+          <a class="menu-link" href="#mariscos-frescos" data-i18n="navFresh">Mariscos frescos</a>
+        </div>
+      </nav>
+      <div class="hero-content container">
+        <p class="eyebrow" data-i18n="eyebrow">Mariscos & pescados</p>
+        <h1 data-i18n-html="heroTitle">El sabor del mar<br /><em>en el desierto.</em></h1>
+        <p class="hero-copy" data-i18n="heroCopy">Platillos preparados al momento, con ingredientes frescos y el sazón de Desert Fish.</p>
+        <div class="language-switch" role="group" aria-label="Selector de idioma">
+          <button type="button" class="language-option is-active" data-language="es" aria-pressed="true">Español</button>
+          <button type="button" class="language-option" data-language="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <div class="wave" aria-hidden="true"></div>
+    </header>
+    <main>
+      <section class="intro container" id="menu"><div><p class="eyebrow" data-i18n="menuLabel">Nuestro menú</p><h2 data-i18n-html="introTitle">Hecho para<br />disfrutarse.</h2></div><p data-i18n="introCopy">Del ceviche a los camarones al ajo: encuentra ese antojo que te trae de vuelta.</p></section>
+      <div class="categories container">
+        {categories.map((category, index) => (
+          <section class="category" aria-labelledby={`category-${index}`}>
+            <div class="category-heading"><p class="section-number">{String(index + 1).padStart(2, "0")}</p><div><h2 id={`category-${index}`} data-es={category.name} data-en={category.enName}>{category.name}</h2><p data-es={category.note} data-en={category.enNote}>{category.note}</p></div></div>
+            <div class="items">{category.items.map((item) => <article class="dish"><div class="dish-name"><h3 data-es={item.name} data-en={item.enName}>{item.name}</h3><p data-es={item.detail} data-en={item.enDetail}>{item.detail}</p></div><div class="price"><strong data-price={item.price}>{item.price}</strong>{item.before && <s data-price={item.before}>{item.before}</s>}</div></article>)}</div>
+          </section>
+        ))}
+      </div>
+      <section class="fresh-section" id="mariscos-frescos">
+        <div class="fresh container">
+          <div class="fresh-intro">
+            <p class="eyebrow" data-es="Productos del mar" data-en="Products of the sea">Productos del mar</p>
+            <h2 data-es="Mariscos frescos" data-en="Fresh seafood">Mariscos frescos</h2>
+            <p data-es="Los mejores productos del mar, listos para que los prepares a tu manera." data-en="The best seafood products, ready for you to prepare your way.">Los mejores productos del mar, listos para que los prepares a tu manera.</p>
+            <small data-es="Consulta disponibilidad." data-en="Ask about availability.">Consulta disponibilidad.</small>
+          </div>
+          <div class="fresh-grid">
+            {freshCategories.map((category) => (
+              <article class="fresh-group">
+                <h3 data-es={category.name} data-en={category.enName}>{category.name}</h3>
+                <ul>{category.items.map(([name, enName]) => <li data-es={name} data-en={enName}>{name}</li>)}</ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section class="hours-section"><div class="hours container"><div class="hours-title"><p class="eyebrow" data-i18n="hoursLabel">Te esperamos</p><h2 data-i18n="hoursTitle">Horario</h2><p data-i18n="hoursCopy">Ven por tus favoritos, todos los días de la semana.</p></div><dl>{hours.map(([day, enDay, time]) => <div><dt data-es={day} data-en={enDay}>{day}</dt><dd>{time}</dd></div>)}</dl></div></section>
+    </main>
+    <footer class="footer container">
+      <img src="/desert-logo.png" alt="Desert Fish" />
+      <p data-i18n="footerCopy">Hecho con sabor a mar.</p>
+      <div class="social-links" aria-label="Redes sociales">
+        <a href="https://www.facebook.com/profile.php?id=100063560574836" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/desertfish.pco/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://wa.me/526383831617" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <a class="back-top" href="#inicio" data-i18n="backTop">Volver arriba ↑</a>
+    </footer>
+    <script>
+      const copy = {
+        es: {
+          navMenu: "Ver menú", navFresh: "Mariscos frescos", eyebrow: "Mariscos & pescados",
+          heroTitle: "El sabor del mar<br><em>en el desierto.</em>",
+          heroCopy: "Platillos preparados al momento, con ingredientes frescos y el sazón de Desert Fish.",
+          menuLabel: "Nuestro menú", introTitle: "Hecho para<br>disfrutarse.",
+          introCopy: "Del ceviche a los camarones al ajo: encuentra ese antojo que te trae de vuelta.",
+          hoursLabel: "Te esperamos", hoursTitle: "Horario",
+          hoursCopy: "Ven por tus favoritos, todos los días de la semana.",
+          footerCopy: "Hecho con sabor a mar.", backTop: "Volver arriba ↑",
+          pageTitle: "Desert Fish | Menú",
+        },
+        en: {
+          navMenu: "View menu", navFresh: "Fresh seafood", eyebrow: "Seafood & fish",
+          heroTitle: "The taste of the sea<br><em>in the desert.</em>",
+          heroCopy: "Made-to-order dishes with fresh ingredients and Desert Fish flavor.",
+          menuLabel: "Our menu", introTitle: "Made to be<br>enjoyed.",
+          introCopy: "From ceviche to garlic shrimp: find the craving that brings you back.",
+          hoursLabel: "See you soon", hoursTitle: "Hours",
+          hoursCopy: "Come by for your favorites, every day of the week.",
+          footerCopy: "Made with a taste of the sea.", backTop: "Back to top ↑",
+          pageTitle: "Desert Fish | Menu",
+        },
+      };
+      const setLanguage = (language: "es" | "en") => {
+        const strings = copy[language];
+        document.documentElement.lang = language;
+        document.title = strings.pageTitle;
+        document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n as keyof typeof strings;
+          element.textContent = strings[key];
+        });
+        document.querySelectorAll<HTMLElement>("[data-i18n-html]").forEach((element) => {
+          const key = element.dataset.i18nHtml as keyof typeof strings;
+          element.innerHTML = strings[key];
+        });
+        document.querySelectorAll<HTMLElement>("[data-es][data-en]").forEach((element) => {
+          element.textContent = element.dataset[language] ?? "";
+        });
+        document.querySelectorAll<HTMLElement>("[data-price]").forEach((element) => {
+          const price = element.dataset.price ?? "";
+          element.textContent = language === "en" ? `${price} MXN` : price;
+        });
+        document.querySelectorAll<HTMLElement>("[data-language]").forEach((button) => {
+          const isSelected = button.dataset.language === language;
+          button.classList.toggle("is-active", isSelected);
+          button.setAttribute("aria-pressed", String(isSelected));
+        });
+      };
+      document.querySelectorAll<HTMLElement>("[data-language]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const language = button.dataset.language;
+          if (language === "es" || language === "en") setLanguage(language);
+        });
+      });
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+      :root { --ink:#172d35; --cream:#fffaf2; --coral:#ff704f; --line:rgba(23,45,53,.18); } * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; background:var(--cream); color:var(--ink); font-family:'DM Sans',Arial,sans-serif; } .container { width:min(1120px,calc(100% - 48px)); margin-inline:auto; }
+      .hero { min-height:680px; position:relative; overflow:hidden; color:var(--ink); background:radial-gradient(circle at 83% 27%,#ff9d7e 0 4%,transparent 4.3%),radial-gradient(circle at 74% 54%,#d9f0e7 0 18%,transparent 18.2%),linear-gradient(135deg,#b9e0df 0%,#d4ece4 100%); } .hero:before,.hero:after { position:absolute; content:""; border:1px solid rgba(23,45,53,.2); border-radius:999px; transform:rotate(-28deg); } .hero:before { width:720px;height:260px;right:-200px;bottom:90px; } .hero:after { width:620px;height:210px;right:-150px;bottom:122px; }
+      .nav { height:106px; display:flex; align-items:center; justify-content:space-between; position:relative;z-index:2; } .brand img { display:block; width:202px; height:67px; object-fit:contain; object-position:left center; } .nav-links { display:flex; align-items:center; gap:22px; } .menu-link,.footer a { font:500 12px 'DM Mono',monospace; text-decoration:none; text-transform:uppercase; letter-spacing:.08em; color:inherit; } .menu-link { border-bottom:1px solid transparent; padding:7px 0; transition:border-color .2s; } .menu-link:hover { border-color:var(--ink); }
+      .hero-content { position:relative; z-index:1; padding-top:92px; } .eyebrow { margin:0 0 17px; color:var(--coral); font:500 12px 'DM Mono',monospace; letter-spacing:.13em; text-transform:uppercase; } h1,h2,h3,p { margin-top:0; } h1,h2 { font-family:Fraunces,Georgia,serif; } h1 { max-width:735px; margin-bottom:24px; font-size:clamp(52px,8vw,108px); line-height:.92; letter-spacing:-.06em; } h1 :global(em) { font-weight:600; color:#fffaf2; text-shadow:1px 1px 0 rgba(23,45,53,.1); } .hero-copy { width:min(430px,100%); margin:0 0 28px; font-size:18px;line-height:1.5; }
+      .language-switch { display:inline-flex; padding:4px; gap:3px; border:1px solid rgba(23,45,53,.3); border-radius:99px; background:rgba(255,250,242,.38); } .language-option { border:0; border-radius:99px; padding:12px 17px; background:transparent; color:var(--ink); cursor:pointer; font:500 12px 'DM Mono',monospace; text-transform:uppercase; letter-spacing:.06em; transition:background .2s,color .2s,transform .2s; } .language-option:hover { transform:translateY(-1px); } .language-option.is-active { background:var(--ink); color:white; }
+      .wave { position:absolute; left:-10%;right:-10%;bottom:-1px;height:80px;background:var(--cream);border-radius:50% 50% 0 0/90% 90% 0 0; } .intro { display:flex; justify-content:space-between; gap:40px; align-items:end; padding:130px 0 75px; } .intro h2,.hours h2 { margin:0;font-size:clamp(48px,6vw,82px);line-height:.92;letter-spacing:-.06em; } .intro > p { max-width:340px;margin:0 0 6px;line-height:1.55;font-size:17px; } .categories { padding-bottom:118px; }
+      .category { padding:45px 0 48px;border-top:1px solid var(--line); } .category-heading { display:grid;grid-template-columns:85px 1fr;gap:15px;margin-bottom:32px; } .section-number { color:var(--coral);font:500 12px 'DM Mono',monospace;letter-spacing:.08em; } .category h2 { margin:0 0 8px;font-size:clamp(35px,4vw,55px);letter-spacing:-.055em;line-height:1; } .category-heading div p { margin:0;color:rgba(23,45,53,.67); } .items { padding-left:100px; }
+      .dish { display:grid;grid-template-columns:1fr auto;gap:25px;padding:21px 0;border-bottom:1px solid var(--line); } .dish h3 { margin:0 0 7px;font-size:18px;letter-spacing:-.02em; } .dish p { max-width:720px;margin:0;color:rgba(23,45,53,.7);font-size:14px;line-height:1.45; } .price { text-align:right; white-space:nowrap;display:flex;flex-direction:column;gap:4px;align-items:flex-end; } .price strong { color:var(--coral);font:500 17px 'DM Mono',monospace; } .price s { color:rgba(23,45,53,.55);font:12px 'DM Mono',monospace; }
+      .fresh-section { background:#d9f0e7; padding:116px 0; } .fresh { display:grid; grid-template-columns:.8fr 1.2fr; gap:78px; } .fresh-intro { position:sticky; top:35px; align-self:start; } .fresh-intro h2 { margin:0 0 22px; font-size:clamp(50px,6vw,80px); line-height:.92; letter-spacing:-.06em; } .fresh-intro > p:not(.eyebrow) { max-width:315px; margin-bottom:25px; font-size:17px; line-height:1.55; } .fresh-intro small { color:rgba(23,45,53,.65); font:500 11px 'DM Mono',monospace; letter-spacing:.1em; text-transform:uppercase; } .fresh-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; } .fresh-group { padding:27px; background:rgba(255,250,242,.66); border:1px solid rgba(23,45,53,.14); border-radius:3px; } .fresh-group h3 { margin:0 0 17px; color:#1250ae; font:500 16px 'DM Mono',monospace; text-transform:uppercase; letter-spacing:.07em; } .fresh-group ul { margin:0; padding:0; list-style:none; } .fresh-group li { padding:7px 0; border-top:1px solid rgba(23,45,53,.12); font-size:14px; line-height:1.25; } .fresh-group li::before { content:'•'; color:#1250ae; margin-right:8px; }
+      .hours-section { color:var(--cream);background:var(--ink);position:relative;overflow:hidden; } .hours-section:after { content:'DESERT FISH'; position:absolute;right:-16px;bottom:-70px;color:rgba(255,255,255,.04);font:700 clamp(92px,17vw,270px) Fraunces,serif;white-space:nowrap;letter-spacing:-.1em; } .hours { display:grid;grid-template-columns:1.05fr 1fr;gap:80px;padding:102px 0;position:relative;z-index:1; } .hours .eyebrow { color:#ff9d7e; }.hours-title>p:last-child { max-width:300px;margin:22px 0 0;color:rgba(255,250,242,.72);line-height:1.5; } dl { margin:0; }.hours dl div { display:flex;justify-content:space-between;gap:25px;padding:11px 0;border-bottom:1px solid rgba(255,250,242,.2);font-size:15px; }.hours dt { font-weight:500; }.hours dd { margin:0;font-family:'DM Mono',monospace;font-size:13px; }
+      .footer { min-height:143px;display:flex;align-items:center;justify-content:space-between;gap:22px; }.footer img { width:142px;height:48px;object-fit:contain;object-position:left center; }.footer p { margin:0;color:rgba(23,45,53,.62);font-size:13px; }.social-links { display:flex;gap:14px;align-items:center; }.social-links a { color:var(--ink);font:500 11px 'DM Mono',monospace;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid transparent;padding:5px 0;transition:border-color .2s; }.social-links a:hover { border-color:var(--coral); }.back-top { white-space:nowrap; }
+      @media (max-width:700px) { .container { width:min(100% - 32px,1120px); }.hero { min-height:618px; }.nav { height:90px; }.brand img { width:130px;height:46px; }.nav-links { gap:11px; }.hero-content { padding-top:76px; }.hero:before {right:-310px;bottom:110px;}.hero:after {right:-300px;bottom:140px;} .intro { display:block;padding:84px 0 45px; }.intro > p { margin-top:28px; }.category { padding:36px 0; }.category-heading { grid-template-columns:44px 1fr;gap:8px;margin-bottom:22px; }.items { padding-left:0; }.dish { grid-template-columns:1fr auto;gap:15px;padding:18px 0; }.dish p { font-size:13px; }.fresh-section { padding:78px 0; }.fresh { grid-template-columns:1fr;gap:45px; }.fresh-intro { position:static; }.fresh-grid { grid-template-columns:1fr; gap:12px; }.fresh-group { padding:22px; }.hours { grid-template-columns:1fr;gap:40px;padding:70px 0; }.footer { min-height:128px; flex-wrap:wrap;padding:30px 0; }.footer p { order:3;width:100%; }.social-links { order:4;width:100%; }.back-top { order:5; }.menu-link { font-size:9px; } }
+    </style>
+  </body>
+</html>

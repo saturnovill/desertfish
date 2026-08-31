@@ -1,23 +1,26 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getSettings } from "@util/storyblokApi";
-
-const settings = await getSettings();
-
 const meta = {
-  title: "404",
-  description: "page not found",
-  og_image: "",
-  image: "",
+  title: "Página no encontrada | Desert Fish",
+  description: "La página solicitada no existe.",
 };
-console.log("create 404 page");
 ---
-
-<Layout meta={meta} {settings}>
-  <div class="grid min-h-svh w-full place-items-center">
-    <div class="richtext text-center">
-      <h1>404</h1>
-      <p>Page Not Found</p>
-    </div>
-  </div>
-</Layout>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+  </head>
+  <body>
+    <main>
+      <p>404</p>
+      <h1>Esta página no existe.</h1>
+      <a href="/">Ir al menú de Desert Fish</a>
+    </main>
+    <style>
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #fffaf2; color: #172d35; font-family: Arial, sans-serif; }
+      main { text-align: center; } p { color: #ff704f; font-weight: 700; letter-spacing: .12em; } h1 { font-family: Georgia, serif; font-size: clamp(2rem, 7vw, 4rem); } a { color: #172d35; }
+    </style>
+  </body>
+</html>
